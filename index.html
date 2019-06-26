@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Notifications Test</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.5/push.js"></script>
+  </head>
+
+  <body>
+    <button type="button" onclick="sendNotification()">Send</button>
+
+    <script>
+
+      $(document).ready(function () {
+        console.log("ready");
+        Push.Permission.request();
+        //sendNotification();
+      });
+
+      function sendNotification() {
+        console.log("send");
+        if (Push.Permission.has()) {
+          var title = 'Title';
+          var body = 'Notification body';
+          Push.create(title, {
+            body: body,
+            requireInteraction: true,
+          });
+        } else {
+          console.log("send error");
+        }
+      }
+    </script>
+  </body>
+</html>
